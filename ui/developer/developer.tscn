@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce68q30ob1o3q"]
+
+[ext_resource type="Script" uid="uid://bfw6cdm2xqmcq" path="res://ui/developer/developer.gd" id="1_7flh5"]
+[ext_resource type="Texture2D" uid="uid://dnfr3itsae5r3" path="res://ui/developer/developers.png" id="2_xsauc"]
+[ext_resource type="PackedScene" uid="uid://2wn04jgmbg71" path="res://ui/developer/color_label.tscn" id="3_cbv64"]
+
+[node name="Developer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7flh5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -513.0
+offset_top = -185.0
+offset_right = -33.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "返回主菜单"
+
+[node name="Developers" type="Sprite2D" parent="ColorRect"]
+position = Vector2(521, 1.0000019)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_xsauc")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_right = 560.0
+offset_bottom = 110.0
+
+[node name="ColorLabel" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel2" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel3" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel4" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel5" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel6" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel7" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel8" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[node name="ColorLabel9" parent="ColorRect/VBoxContainer" instance=ExtResource("3_cbv64")]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="ColorRect/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

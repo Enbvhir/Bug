@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://2wn04jgmbg71"]
+
+[ext_resource type="Script" uid="uid://b5285yu1yd11v" path="res://ui/developer/label.gd" id="1_d33v4"]
+
+[node name="ColorLabel" type="Label"]
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "感谢您的游玩！"
+script = ExtResource("1_d33v4")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

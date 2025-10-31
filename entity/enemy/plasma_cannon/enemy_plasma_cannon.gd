@@ -25,10 +25,16 @@ func _physics_process(delta: float) -> void:
 			if player:
 				next_state=State.PRE_ATTACK
 			if is_hurted:next_state=State.HURT
+			if hp<=0:
+				dead.emit()
+				next_state=State.DIE
 		State.MOVE:
 			if %TimerMove.is_stopped():next_state=State.IDLE
 			if is_hurted:next_state=State.HURT
 			if player:next_state=State.PRE_ATTACK
+			if hp<=0:
+				dead.emit()
+				next_state=State.DIE
 		State.HURT:
 			if not %AnimationPlayer.is_playing():next_state=State.IDLE
 			if hp<=0:
@@ -36,10 +42,14 @@ func _physics_process(delta: float) -> void:
 				next_state=State.DIE
 		State.PRE_ATTACK:
 			if not %AnimationPlayer.is_playing():next_state=State.ATTACK
-			if is_hurted:next_state=State.HURT
+			if hp<=0:
+				dead.emit()
+				next_state=State.DIE
 		State.ATTACK:
 			if not %AnimationPlayer.is_playing():next_state=State.IDLE
-			if is_hurted:next_state=State.HURT
+			if hp<=0:
+				dead.emit()
+				next_state=State.DIE
 	#2/3.状态切换
 	if next_state==current_state:pass
 	else:
@@ -49,6 +59,8 @@ func _physics_process(delta: float) -> void:
 				%Laser.visible=false
 				Global.play_sfx(Global.SFX_LASER_3)
 				%SfxLaser.stop()
+			State.MOVE:
+				%SfxMove.stop()
 		match next_state:
 			State.IDLE:
 				%AnimationPlayer.play("idle")
@@ -57,8 +69,13 @@ func _physics_process(delta: float) -> void:
 			State.MOVE:
 				%AnimationPlayer.play("move")
 				input_x=randf_range(-1,1)
-				if input_x:direction=sign(input_x)
+				if input_x:
+					var direction_before=direction
+					direction=sign(input_x)
+					if direction_before!=direction:
+						Global.play_sfx(Global.SFX_PLASMA_TURN)
 				%TimerMove.start(randf_range(1,5))
+				%SfxMove.play()
 			State.HURT:
 				%AnimationPlayer.play("hurt")
 				hp-=1
@@ -79,14 +96,22 @@ func _physics_process(delta: float) -> void:
 		State.IDLE:pass
 		State.MOVE:
 			velocity.x=input_x*400
+		State.PRE_ATTACK:
+			if is_hurted:hp-=1
+			is_hurted=false
 		State.ATTACK:
 			var array:Array=%HitBox.get_overlapping_bodies()
 			if array.is_empty():pass
 			else:
 				array[0].is_hurted=true
 				array[0].direction_hurt=direction
+			if is_hurted:hp-=1
+			is_hurted=false
 		State.HURT:
 			velocity.x=1000*direction_hurt
 	
 	velocity.y+=gravity*delta
 	move_and_slide()
+
+
+func _on_sfx_move_finished() -> void:%SfxMove.play()

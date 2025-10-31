@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dpmd4qwx23v82" path="res://test.gd" id="1_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://52m0ohtn51ho" path="res://entity/player/player.tscn" id="1_37kl0"]
-[ext_resource type="PackedScene" uid="uid://ctuf7ogl3bq25" path="res://entity/enemy/noah/enemy_noah.tscn" id="3_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://c4a77vtbtgmso" path="res://entity/enemy/shield/enemy_shield.tscn" id="3_6uqi0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uh7m"]
 size = Vector2(2536, 420)
@@ -12,9 +12,6 @@ size = Vector2(286, 1341)
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_6uqi0")
-
-[node name="EnemyNoah" parent="." instance=ExtResource("3_6uqi0")]
-position = Vector2(1077, 672)
 
 [node name="Player" parent="." instance=ExtResource("1_37kl0")]
 position = Vector2(389, 665)
@@ -32,3 +29,6 @@ shape = SubResource("RectangleShape2D_6uqi0")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(2063, 516)
 shape = SubResource("RectangleShape2D_6uqi0")
+
+[node name="EnemyShield" parent="." instance=ExtResource("3_6uqi0")]
+position = Vector2(1464, 748)

@@ -22,6 +22,7 @@ func clear_dead_connections():
 var is_sprint_hit_enemy:bool
 var time_sprint_held:float
 var shader_vignette:ShaderMaterial
+var cover_hurt_sfx:bool=false
 
 var node_ghost:Node2D
 func _ready() -> void:
@@ -33,7 +34,7 @@ func _ready() -> void:
 		var pos=Vector2(100+150*i,50)
 		var hp_unit =HP_UNIT.instantiate()
 		hp_unit.position=pos
-		%ColorRect.add_child(hp_unit)
+		%HpUnit.add_child(hp_unit)
 	
 	await ready
 	node_ghost=Node2D.new()
@@ -153,19 +154,20 @@ func _physics_process(delta: float) -> void:
 				time_sprint_held=0
 			State.HURT:
 				%AnimationPlayer.play("hurt")
-				Global.play_sfx(Global.SFX_HURT)
+				if cover_hurt_sfx:cover_hurt_sfx=true
+				else:Global.play_sfx(Global.SFX_HURT)
 				hp-=1
 				shader_vignette.set_shader_parameter("outer_radius",0.2+hp*0.3)
 				is_hurted=false
 				time_sprint_held=0
 				Global.stun(0.3)
 				Global.camera_shake=30
-				var hp_unit=%ColorRect.get_child(-1)
+				var hp_unit=%HpUnit.get_child(-1)
 				if life_ghost:life_ghost*=2.5
 				else: life_ghost=0.2
 				if hp_unit:
 					hp_unit.animation_player.play("die")
-					#reparent如果回血
+					hp_unit.reparent(%HpUnitDie)
 			State.ATK_COMMON:
 				%AnimationPlayer.play("atk_common")
 				%HitBox.connect("body_entered",atk_effect)

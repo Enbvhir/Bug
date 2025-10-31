@@ -11,6 +11,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		var player:Player=body
 		player.is_hurted=true
+		player.cover_hurt_sfx=true
+		Global.play_sfx(Global.SFX_LASER_HIT)
 		if player.current_state==Player.State.SPRINT:pass
 		else:queue_free()
 	else:queue_free()

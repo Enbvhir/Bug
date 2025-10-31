@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4a77vtbtgmso"]
+[gd_scene load_steps=15 format=3 uid="uid://c4a77vtbtgmso"]
 
 [ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://entity/enemy/enemy.tscn" id="1_6bcyk"]
 [ext_resource type="Texture2D" uid="uid://3gcvkfr45kyh" path="res://entity/enemy/shield/full.png" id="2_m16ve"]
 [ext_resource type="Script" uid="uid://jcmkyiot43sp" path="res://entity/enemy/shield/enemy_shield.gd" id="2_svjct"]
+[ext_resource type="PackedScene" uid="uid://bgliou7lie7ee" path="res://entity/health_bar.tscn" id="4_8u84x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rog87"]
 size = Vector2(993, 279)
@@ -28,6 +29,39 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_lwtl4"]
+resource_name = "die"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59, 60, 61, 62, 63, 64, 65]
+}
+
+[sub_resource type="Animation" id="Animation_uf21k"]
+resource_name = "hurt"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46, 47]
+}
+
 [sub_resource type="Animation" id="Animation_m16ve"]
 resource_name = "idle"
 length = 1.4
@@ -44,23 +78,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-}
-
-[sub_resource type="Animation" id="Animation_rog87"]
-resource_name = "pre_attack"
-length = 0.7
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [14, 15, 16, 17, 18, 19, 20]
 }
 
 [sub_resource type="Animation" id="Animation_8u84x"]
@@ -81,9 +98,9 @@ tracks/0/keys = {
 "values": [28, 29, 30, 31]
 }
 
-[sub_resource type="Animation" id="Animation_uf21k"]
-resource_name = "hurt"
-length = 0.6
+[sub_resource type="Animation" id="Animation_rog87"]
+resource_name = "pre_attack"
+length = 0.7
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -92,26 +109,10 @@ tracks/0/path = NodePath("Direction/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [42, 43, 44, 45, 46, 47]
-}
-
-[sub_resource type="Animation" id="Animation_lwtl4"]
-resource_name = "die"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Direction/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [56, 57, 58, 59, 60, 61, 62, 63, 64, 65]
+"values": [14, 15, 16, 17, 18, 19, 20]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_svjct"]
@@ -180,5 +181,10 @@ one_shot = true
 [node name="TimerMove" type="Timer" parent="." index="4"]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="HealthBar" parent="." index="5" instance=ExtResource("4_8u84x")]
+offset_top = -244.0
+offset_bottom = -244.0
+scale = Vector2(2, 2)
 
 [connection signal="body_entered" from="Direction/HitBox" to="." method="player_body_hit"]

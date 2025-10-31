@@ -43,10 +43,14 @@ centered = false
 texture = ExtResource("4_bxe8t")
 centered = false
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="." index="1"]
+layer = 1
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2" index="0"]
 motion_scale = Vector2(1.5, 1.5)
 
-[node name="Front" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" index="0"]
+[node name="Front" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer3" index="0"]
+position = Vector2(0, 155)
 texture = ExtResource("5_pjf6o")
 centered = false
 
@@ -90,16 +94,16 @@ direction = -1
 position = Vector2(1398, 1329)
 direction = -1
 
-[node name="Teleportation" parent="." index="6" instance=ExtResource("3_lobfl")]
+[node name="Teleportation" parent="." index="7" instance=ExtResource("3_lobfl")]
 position = Vector2(3219, 785)
 monitoring = false
-target_level = "level_street"
+target_level = "level_apartment"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation" index="0"]
 position = Vector2(-1090, -87)
 shape = SubResource("RectangleShape2D_efjfc")
 
-[node name="Timer" type="Timer" parent="." index="7"]
+[node name="Timer" type="Timer" parent="." index="8"]
 one_shot = true
 autostart = true
 

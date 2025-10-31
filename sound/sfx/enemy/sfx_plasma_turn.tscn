@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bloa0jehrde0o"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_dxavp"]
+[ext_resource type="AudioStream" uid="uid://dl3b1vgvi76ki" path="res://sound/sfx/enemy/sfx_plasma_turn.mp3" id="2_dxavp"]
+
+[node name="SfxPlasmaTurn" instance=ExtResource("1_dxavp")]
+stream = ExtResource("2_dxavp")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://djkdm4bligmbq"]
+
+[ext_resource type="PackedScene" uid="uid://cm5ikm3w7dtba" path="res://sound/sfx/sfx.tscn" id="1_xg756"]
+[ext_resource type="AudioStream" uid="uid://clrkc0c5wkret" path="res://sound/sfx/enemy/sfx_ball_transform.mp3" id="2_xg756"]
+
+[node name="SfxBallTransform" instance=ExtResource("1_xg756")]
+stream = ExtResource("2_xg756")

@@ -152,7 +152,7 @@ tracks/0/path = NodePath("Direction/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(7.450581e-09, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 2]
@@ -301,7 +301,7 @@ one_shot = true
 
 [node name="TimerStep" type="Timer" parent="." index="4"]
 unique_name_in_owner = true
-wait_time = 0.25
+wait_time = 0.23
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
 layer = 4
@@ -316,5 +316,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HpUnit" type="Control" parent="CanvasLayer/ColorRect" index="0"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HpUnitDie" type="Control" parent="CanvasLayer/ColorRect" index="1"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="timeout" from="TimerStep" to="." method="_on_timer_step_timeout"]

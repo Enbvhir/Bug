@@ -8,11 +8,14 @@ const LEVEL_SEWER = preload("uid://c4m7w371a50xy")
 const LEVEL_CITY = preload("uid://ctoymaqneykpq")
 const LEVEL_CYBERPUNK = preload("uid://xe1j7c2ii011")
 const LEVEL_BAR = preload("uid://cey0hy37clu11")
+const LEVEL_APARTMENT = preload("uid://be1q8fgeey1e")
+
 const LEVEL_STREET = preload("uid://c0mq03nfqmt8l")
 const LEVEL_CAVE_1 = preload("uid://l6m7am4bx8hx")
 const LEVEL_CAVE_2 = preload("uid://dtab1ex720nxt")
 const LEVEL_CAVE_3 = preload("uid://j4ss5o1avea6")
 const LEVEL_CHURCH = preload("uid://sb377ee0lgks")
+
 const LEVEL_TEST = preload("uid://dn7bycqqe64nc")
 
 
@@ -24,6 +27,7 @@ var map_level={
 	"level_city":LEVEL_CITY,
 	"level_cyberpunk":LEVEL_CYBERPUNK,
 	"level_bar":LEVEL_BAR,
+	"level_apartment":LEVEL_APARTMENT,
 	"level_street":LEVEL_STREET,
 	"level_cave_1":LEVEL_CAVE_1,
 	"level_cave_2":LEVEL_CAVE_2,
@@ -33,6 +37,7 @@ var map_level={
 }
 func switch_level(name_level:String):
 	var packed_level=map_level[name_level]
+	Global.clear_dialogue()
 	Global.play_sfx(Global.SFX_SWITCH)
 	if packed_level:
 		player.clear_dead_connections()
@@ -64,9 +69,8 @@ func _ready() -> void:
 	current_level.set_camera_limit()
 	%Player.dead.connect(func():%TimerEnd.start())
 	dialogue.finished.connect(func():Global.switch_scene(Global.UI_FAIL))
-	#switch_level("level_church")
 	if Global.is_restart:switch_level(Global.name_current_level)
-	
+	#switch_level("level_church")
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("tab"):

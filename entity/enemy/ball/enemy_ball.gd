@@ -28,8 +28,12 @@ func _physics_process(delta: float) -> void:
 			State.IDLE:
 				%AnimationPlayer.play("idle")
 				velocity.x=0
-			State.PRE_ATTACK:%AnimationPlayer.play("pre_attack")
-			State.MOVE:%AnimationPlayer.play("move")
+			State.PRE_ATTACK:
+				%AnimationPlayer.play("pre_attack")
+				Global.play_sfx(Global.SFX_BALL_TRANSFORM)
+			State.MOVE:
+				%AnimationPlayer.play("move")
+				%AudioStreamPlayer.play()
 	current_state=next_state
 	#3/3.状态运行
 	match current_state:
@@ -63,3 +67,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 
 func _on_area_detective_body_entered(body: Node2D) -> void:
 	is_player_detected=true
+
+
+func _on_audio_stream_player_finished() -> void:
+	%AnimationPlayer.play()

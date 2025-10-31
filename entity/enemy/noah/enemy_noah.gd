@@ -26,7 +26,7 @@ func _on_timer_boom_1_timeout() -> void:
 	b_r.scale=Vector2(sc,sc)
 	add_sibling(b_r)
 	
-	Global.play_sfx(Global.SFX_BOOM)
+	Global.play_sfx_pitched(Global.SFX_BOOM_2,1+0.1*randf_range(-1,1))
 	
 	boom_order+=1
 	if boom_order>=32:%TimerBoom2.start()
@@ -42,7 +42,7 @@ func _on_timer_boom_2_timeout() -> void:
 	b.modulate=c
 	b.modulate.h
 	add_sibling(b)
-	Global.play_sfx(Global.SFX_BOOM)
+	Global.play_sfx_pitched(Global.SFX_BOOM,1+0.1*randf_range(-1,1))
 	
 	boom_order_2+=1
 	if boom_order_2>=boom_marks_m.size():dead.emit()

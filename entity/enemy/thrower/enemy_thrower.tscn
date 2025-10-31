@@ -156,6 +156,11 @@ one_shot = true
 unique_name_in_owner = true
 one_shot = true
 
+[node name="TimerStep" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+wait_time = 0.3
+
 [connection signal="body_entered" from="Direction/AreaDetection" to="." method="_on_area_detection_body_entered"]
 [connection signal="body_exited" from="Direction/AreaDetection" to="." method="_on_area_detection_body_exited"]
 [connection signal="body_entered" from="Direction/HitBox" to="." method="player_body_hit"]
+[connection signal="timeout" from="TimerStep" to="." method="_on_timer_step_timeout"]

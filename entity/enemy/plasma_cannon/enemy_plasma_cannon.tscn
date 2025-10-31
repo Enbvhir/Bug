@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bn1v73eb47jsk"]
+[gd_scene load_steps=21 format=3 uid="uid://bn1v73eb47jsk"]
 
 [ext_resource type="PackedScene" uid="uid://cbkh2tq3o0xwf" path="res://entity/enemy/enemy.tscn" id="1_d8b3q"]
 [ext_resource type="Script" uid="uid://cl1ofd0qi7djm" path="res://entity/enemy/plasma_cannon/enemy_plasma_cannon.gd" id="2_k46t8"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dk1ekut57ukn3" path="res://asset/laser_1.png" id="4_qvo6o"]
 [ext_resource type="Script" uid="uid://p7m6lqmm1gx1" path="res://entity/enemy/plasma_cannon/collision_shape_2d.gd" id="4_ukea0"]
 [ext_resource type="AudioStream" uid="uid://gmk2vwa2cx8s" path="res://sound/loop/sfx_laser_2.mp3" id="6_fqexd"]
+[ext_resource type="AudioStream" uid="uid://cgxrjk31cd3u2" path="res://sound/loop/sfx_plasma_move.mp3" id="7_rj26a"]
+[ext_resource type="PackedScene" uid="uid://bgliou7lie7ee" path="res://entity/health_bar.tscn" id="8_6uiaq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
 size = Vector2(500, 257)
@@ -456,3 +458,15 @@ one_shot = true
 unique_name_in_owner = true
 stream = ExtResource("6_fqexd")
 bus = &"Sfx"
+
+[node name="SfxMove" type="AudioStreamPlayer" parent="." index="6"]
+unique_name_in_owner = true
+stream = ExtResource("7_rj26a")
+bus = &"Sfx"
+
+[node name="HealthBar" parent="." index="7" instance=ExtResource("8_6uiaq")]
+offset_top = -262.0
+offset_bottom = -262.0
+scale = Vector2(2, 2)
+
+[connection signal="finished" from="SfxMove" to="." method="_on_sfx_move_finished"]

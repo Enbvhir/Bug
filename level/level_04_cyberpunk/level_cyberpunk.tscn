@@ -120,5 +120,5 @@ position = Vector2(1920, 1400)
 position = Vector2(1550, 966)
 direction = -1
 
-[connection signal="body_entered" from="Teleportation" to="." method="_on_teleportation_body_entered"]
+[connection signal="body_entered" from="Teleportation" to="Teleportation" method="_on_body_entered"]
 [connection signal="dead" from="Enemy/EnemyPlasmaCannon" to="." method="_on_enemy_plasma_cannon_dead"]

@@ -8,3 +8,7 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	Global.is_restart=true
 	Global.switch_scene(Global.UI_PLAY)
+
+
+func _on_control_mouse_entered() -> void:
+	Global.play_sfx(Global.SFX_BUTTON_ON)

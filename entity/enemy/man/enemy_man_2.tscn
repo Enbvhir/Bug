@@ -82,4 +82,9 @@ libraries = {
 }
 autoplay = "move"
 
+[node name="TimerStep" type="Timer" parent="." index="3"]
+unique_name_in_owner = true
+wait_time = 0.35
+
 [connection signal="body_entered" from="Direction/HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="timeout" from="TimerStep" to="." method="_on_timer_step_timeout"]

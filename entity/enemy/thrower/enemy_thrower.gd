@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		match current_state:
 			State.IDLE:pass
+			State.MOVE:%TimerStep.stop()
 		match next_state:
 			State.IDLE:
 				%AnimationPlayer.play("idle")
@@ -34,6 +35,7 @@ func _physics_process(delta: float) -> void:
 				input_x=[-1,1].pick_random()
 				direction=sign(input_x)
 				%TimerMove.start()
+				%TimerStep.start()
 			State.ATTACK:
 				%AnimationPlayer.play("attack")
 				velocity.x=0
@@ -66,11 +68,15 @@ func thorw_box():
 		p.velocity.x=1200*sign(dx)
 		var t=dx/p.velocity.x
 		p.velocity.y=dy/t-0.5*Entity.gravity*t
-	get_parent().add_child(p)
+	add_sibling(p)
+	Global.play_sfx(Global.SFX_THROWER_SHOOT)
 
 func _on_area_detection_body_entered(body: Node2D) -> void:
 	is_player_detected=true
 
-
 func _on_area_detection_body_exited(body: Node2D) -> void:
 	is_player_detected=false
+
+var sfx_steps=[Global.SFX_THROWER_STEP_1,Global.SFX_THROWER_STEP_2]
+func _on_timer_step_timeout() -> void:
+	Global.play_sfx(sfx_steps.pick_random())

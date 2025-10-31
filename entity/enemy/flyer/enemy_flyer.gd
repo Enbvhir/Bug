@@ -24,6 +24,10 @@ func _physics_process(delta: float) -> void:
 				p.position=%RayCast2D.global_position
 				p.velocity=Vector2(0,600)
 				%TimerShoot.start()
+				Global.play_sfx(Global.SFX_FLYER_SHOOT)
 				add_sibling(p)
 		velocity.x=speed_x*direction
 		move_and_slide()
+
+
+func _on_sfx_finished() -> void:%Sfx.play()

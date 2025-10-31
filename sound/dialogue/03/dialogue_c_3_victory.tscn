@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ir2kpvd1fwk7"]
+
+[ext_resource type="PackedScene" uid="uid://c76088khye830" path="res://sound/dialogue/dialogue.tscn" id="1_ncgw5"]
+[ext_resource type="AudioStream" uid="uid://budfin8yjlqgj" path="res://sound/dialogue/03/dialogue_c_3_victory_s.mp3" id="2_ncgw5"]
+
+[node name="DialogueC3Victory" instance=ExtResource("1_ncgw5")]
+stream = ExtResource("2_ncgw5")

@@ -3,6 +3,10 @@ extends Enemy
 @export var speed_x:float=200
 
 func _physics_process(delta: float) -> void:
+	if %TimerStep.is_stopped():
+		if is_on_floor():%TimerStep.start()
+	else: if not is_on_floor():%TimerStep.stop()
+	
 	if is_hurted:
 		var effect:Node2D=Global.EFFECT_BOOM.instantiate()
 		effect.global_position=%MarkerBoom.global_position
@@ -21,3 +25,8 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 		var player:Player=body
 		player.is_hurted=true
 		player.direction_hurt=direction
+
+
+var sfx_steps=[Global.SFX_MAN_STEP_1,Global.SFX_MAN_STEP_2]
+func _on_timer_step_timeout() -> void:
+	Global.play_sfx(sfx_steps.pick_random())
