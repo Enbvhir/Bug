@@ -92,15 +92,11 @@ texture = ExtResource("9_r1yeu")
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground" index="4"]
 motion_scale = Vector2(0.8, 0.8)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" index="0"]
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" index="0"]
 texture = ExtResource("10_mn2ti")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" index="1"]
-texture = ExtResource("10_mn2ti")
-centered = false
-
-[node name="Back5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" index="2"]
+[node name="Back5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5" index="1"]
 position = Vector2(2880, 700)
 texture = ExtResource("11_q7sk2")
 

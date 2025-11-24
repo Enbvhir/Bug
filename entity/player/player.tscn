@@ -252,6 +252,8 @@ shader_parameter/outer_radius = 1.7
 [node name="Player" instance=ExtResource("1_4pl66")]
 collision_layer = 2
 collision_mask = 257
+floor_max_angle = 0.87266463
+floor_snap_length = 10.0
 script = ExtResource("2_bgq54")
 hp = 5
 

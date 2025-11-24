@@ -70,7 +70,7 @@ func _ready() -> void:
 	%Player.dead.connect(func():%TimerEnd.start())
 	dialogue.finished.connect(func():Global.switch_scene(Global.UI_FAIL))
 	if Global.is_restart:switch_level(Global.name_current_level)
-	#switch_level("level_church")
+	switch_level("level_test")
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("tab"):
